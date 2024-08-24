@@ -11,6 +11,7 @@ const Result = () => {
 
   useEffect(() => {
     const fetchResult = async () => {
+      setLoading(true)
       try {
         const response = await fetch("https://pomkara-high-school-server.vercel.app/getResult");
         if (!response.ok) {
@@ -63,7 +64,7 @@ const Result = () => {
         <meta property="og:title" content="Results - Pomkara Siddikur Rahman & Hakim High School" />
         <meta property="og:description" content="Check the latest examination results and academic performance at Pomkara Siddikur Rahman & Hakim High School. Stay updated with your academic progress." />
         <meta property="og:image" content="[URL to an image related to results or the school]" />
-        <meta property="og:url" content="[Your school’s website URL]/results" />
+        <meta property="og:url" content="https://pomkara-high-school.netlify.app/components/result" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Results - Pomkara Siddikur Rahman & Hakim High School" />
         <meta name="twitter:description" content="Access your examination results and academic performance from Pomkara Siddikur Rahman & Hakim High School. Stay informed about your progress and achievements." />

@@ -13,7 +13,7 @@ const Faculty = () => {
   const dispatch = useDispatch();
   const [user, setUser] = useState(null);
   const { facultys, loading, error } = useSelector((state) => state.faculty);
-  
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const userData = JSON.parse(localStorage.getItem("user"));
@@ -49,15 +49,39 @@ const Faculty = () => {
     dispatch(fetchFacultyData());
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <div className="mt-5 text-center">
+        <span className="loading loading-spinner text-primary"></span>
+        <span className="loading loading-spinner text-secondary"></span>
+        <span className="loading loading-spinner text-accent"></span>
+        <span className="loading loading-spinner text-neutral"></span>
+        <span className="loading loading-spinner text-info"></span>
+        <span className="loading loading-spinner text-success"></span>
+        <span className="loading loading-spinner text-warning"></span>
+        <span className="loading loading-spinner text-error"></span>
+      </div>
+    );
   if (error) return <p>Error: {error}</p>;
 
   if (!user) {
-    return <div  className="text-center mt-4 text-2xl text-red-500 font-serif">Please login first.</div>;
+    return (
+      <div className="text-center mt-4 text-2xl text-red-500 font-serif">
+        Please login first.
+      </div>
+    );
   } else if (user?.role !== "principle") {
-    return <div  className="text-center mt-4 text-2xl text-red-500 font-serif">This section is for the principal only.</div>;
+    return (
+      <div className="text-center mt-4 text-2xl text-red-500 font-serif">
+        This section is for the principal only.
+      </div>
+    );
   } else if (user?.isApprove === false) {
-    return <div  className="text-center mt-4 text-2xl text-red-500 font-serif">Only approved principals can see this section.</div>;
+    return (
+      <div className="text-center mt-4 text-2xl text-red-500 font-serif">
+        Only approved principals can see this section.
+      </div>
+    );
   }
 
   const unapprovedFaculty = facultys.filter((faculty) => !faculty.isApprove);

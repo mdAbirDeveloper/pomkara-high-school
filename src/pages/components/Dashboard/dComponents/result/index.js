@@ -27,7 +27,9 @@ const Result = () => {
   }, []);
 
   const fetchResult = async () => {
-    const response = await fetch("https://pomkara-high-school-server.vercel.app/getResult");
+    const response = await fetch(
+      "https://pomkara-high-school-server.vercel.app/getResult"
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch Result");
     }
@@ -74,13 +76,16 @@ const Result = () => {
         uploader: { name: user?.name, email: user?.email },
       };
 
-      const response = await fetch("https://pomkara-high-school-server.vercel.app/addResult", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(resultData),
-      });
+      const response = await fetch(
+        "https://pomkara-high-school-server.vercel.app/addResult",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(resultData),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to save result in MongoDB");
@@ -117,15 +122,33 @@ const Result = () => {
   };
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="mt-5 text-center">
+        <span className="loading loading-spinner text-primary"></span>
+        <span className="loading loading-spinner text-secondary"></span>
+        <span className="loading loading-spinner text-accent"></span>
+        <span className="loading loading-spinner text-neutral"></span>
+        <span className="loading loading-spinner text-info"></span>
+        <span className="loading loading-spinner text-success"></span>
+        <span className="loading loading-spinner text-warning"></span>
+        <span className="loading loading-spinner text-error"></span>
+      </div>
+    );
   }
 
   if (error) {
     return <p>Error: {error.message}</p>;
   }
 
-  if (!["teacher", "principle", "faculty"].includes(user?.role) || user?.isApprove == false) {
-    return <div  className="text-center mt-4 text-2xl text-red-500 font-serif">Please login first to see this section</div>;
+  if (
+    !["teacher", "principle", "faculty"].includes(user?.role) ||
+    user?.isApprove == false
+  ) {
+    return (
+      <div className="text-center mt-4 text-2xl text-red-500 font-serif">
+        Please login first to see this section
+      </div>
+    );
   }
 
   return (
@@ -152,7 +175,7 @@ const Result = () => {
           property="og:image"
           content="[URL to an image related to results or the school]"
         />
-        <meta property="og:url" content="[Your school’s website URL]/results" />
+        <meta property="og:url" content="https://pomkara-high-school.netlify.app/components/results" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"

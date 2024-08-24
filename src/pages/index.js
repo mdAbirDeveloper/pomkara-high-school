@@ -19,7 +19,7 @@ export default function Home() {
         <meta property="og:title" content="Pomkara Siddikur Rahman & Hakim High School - Home" />
         <meta property="og:description" content="Pomkara Siddikur Rahman & Hakim High School provides an engaging learning environment with dedicated faculty and a variety of programs. Discover more about our school." />
         <meta property="og:image" content="[URL to an image representing your school]" />
-        <meta property="og:url" content="[Your school’s website URL]" />
+        <meta property="og:url" content="https://pomkara-high-school.netlify.app/" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Pomkara Siddikur Rahman & Hakim High School - Home" />
         <meta name="twitter:description" content="Pomkara Siddikur Rahman & Hakim High School offers a dynamic education experience with a focus on student success and community involvement." />

@@ -57,7 +57,7 @@ const Contact = () => {
         <meta property="og:title" content="Contact Us - Pomkara Siddikur Rahman & Hakim High School" />
         <meta property="og:description" content="Have questions or need more information? Contact Pomkara Siddikur Rahman & Hakim High School for support with admissions, programs, and more." />
         <meta property="og:image" content="[URL to an image related to contact or the school]" />
-        <meta property="og:url" content="[Your school’s website URL]/contact" />
+        <meta property="og:url" content="https://pomkara-high-school.netlify.app/components/contact" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Contact Us - Pomkara Siddikur Rahman & Hakim High School" />
         <meta name="twitter:description" content="Reach out to Pomkara Siddikur Rahman & Hakim High School for any questions or support. We're here to assist you with all your inquiries." />

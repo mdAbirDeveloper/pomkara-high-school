@@ -10,6 +10,7 @@ const Notice = () => {
 
   useEffect(() => {
     const fetchNotices = async () => {
+      setLoading(true)
       try {
         const response = await fetch("https://pomkara-high-school-server.vercel.app/getNotices");
         if (!response.ok) {
@@ -75,7 +76,7 @@ const Notice = () => {
           property="og:image"
           content="[URL to an image related to notices or the school]"
         />
-        <meta property="og:url" content="[Your school’s website URL]/notices" />
+        <meta property="og:url" content="https://pomkara-high-school.netlify.app/components/notices" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"

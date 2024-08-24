@@ -77,7 +77,7 @@ const Login = () => {
         <meta property="og:title" content="Login - Pomkara Siddikur Rahman & Hakim High School" />
         <meta property="og:description" content="Log in to your account at Pomkara Siddikur Rahman & Hakim High School to access your profile, grades, and other resources." />
         <meta property="og:image" content="[URL to an image related to login or the school]" />
-        <meta property="og:url" content="[Your school’s website URL]/login" />
+        <meta property="og:url" content="https://pomkara-high-school.netlify.app/components/login" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Login - Pomkara Siddikur Rahman & Hakim High School" />
         <meta name="twitter:description" content="Access your Pomkara Siddikur Rahman & Hakim High School account. Manage your profile, view grades, and access school resources." />

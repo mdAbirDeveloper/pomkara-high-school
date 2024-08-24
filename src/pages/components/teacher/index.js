@@ -11,8 +11,11 @@ export default function Teacher() {
   useEffect(() => {
     // Fetch faculty data from an API route
     const fetchFacultyData = async () => {
+      setLoading(true)
       try {
-        const response = await fetch("https://pomkara-high-school-server.vercel.app/teachers");
+        const response = await fetch(
+          "https://pomkara-high-school-server.vercel.app/teachers"
+        );
         const data = await response.json();
         const approvedTeacher = data.filter((faculty) => faculty.isApprove);
 
@@ -28,7 +31,18 @@ export default function Teacher() {
   }, []);
 
   if (loading) {
-    return <p className="text-center text-lg py-10">Loading...</p>;
+    return (
+      <div className="mt-5 text-center">
+        <span className="loading loading-spinner text-primary"></span>
+        <span className="loading loading-spinner text-secondary"></span>
+        <span className="loading loading-spinner text-accent"></span>
+        <span className="loading loading-spinner text-neutral"></span>
+        <span className="loading loading-spinner text-info"></span>
+        <span className="loading loading-spinner text-success"></span>
+        <span className="loading loading-spinner text-warning"></span>
+        <span className="loading loading-spinner text-error"></span>
+      </div>
+    );
   }
 
   const displayedTeacher = showAll ? teacher : teacher.slice(0, 6);
@@ -36,17 +50,46 @@ export default function Teacher() {
   return (
     <div>
       <Head>
-        <title>Our Teachers | Pomkara Siddikur Rahman & Hakim High School</title>
-        <meta name="description" content="Meet the dedicated teachers at Pomkara Siddikur Rahman & Hakim High School. Discover our team of educators committed to providing quality education and fostering a supportive learning environment." />
-        <meta name="keywords" content="teachers, Pomkara Siddikur Rahman & Hakim High School, educators, faculty, teaching staff" />
-        <meta property="og:title" content="Our Teachers - Pomkara Siddikur Rahman & Hakim High School" />
-        <meta property="og:description" content="Explore the profiles of our dedicated teachers at Pomkara Siddikur Rahman & Hakim High School. Learn about their qualifications and roles in providing excellent education." />
-        <meta property="og:image" content="[URL to an image related to teachers or the school]" />
-        <meta property="og:url" content="[Your school’s website URL]/teachers" />
+        <title>
+          Our Teachers | Pomkara Siddikur Rahman & Hakim High School
+        </title>
+        <meta
+          name="description"
+          content="Meet the dedicated teachers at Pomkara Siddikur Rahman & Hakim High School. Discover our team of educators committed to providing quality education and fostering a supportive learning environment."
+        />
+        <meta
+          name="keywords"
+          content="teachers, Pomkara Siddikur Rahman & Hakim High School, educators, faculty, teaching staff"
+        />
+        <meta
+          property="og:title"
+          content="Our Teachers - Pomkara Siddikur Rahman & Hakim High School"
+        />
+        <meta
+          property="og:description"
+          content="Explore the profiles of our dedicated teachers at Pomkara Siddikur Rahman & Hakim High School. Learn about their qualifications and roles in providing excellent education."
+        />
+        <meta
+          property="og:image"
+          content="[URL to an image related to teachers or the school]"
+        />
+        <meta
+          property="og:url"
+          content="https://pomkara-high-school.netlify.app/components/teacher"
+        />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Our Teachers - Pomkara Siddikur Rahman & Hakim High School" />
-        <meta name="twitter:description" content="Meet the teachers of Pomkara Siddikur Rahman & Hakim High School. Find out more about their roles and contributions to our educational community." />
-        <meta name="twitter:image" content="[URL to an image related to teachers or the school]" />
+        <meta
+          name="twitter:title"
+          content="Our Teachers - Pomkara Siddikur Rahman & Hakim High School"
+        />
+        <meta
+          name="twitter:description"
+          content="Meet the teachers of Pomkara Siddikur Rahman & Hakim High School. Find out more about their roles and contributions to our educational community."
+        />
+        <meta
+          name="twitter:image"
+          content="[URL to an image related to teachers or the school]"
+        />
       </Head>
       <div className="bg-gray-100 min-h-screen py-10 px-6">
         <h1 className="text-4xl font-semibold text-center mb-10">

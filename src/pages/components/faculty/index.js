@@ -11,8 +11,11 @@ export default function Faculty() {
   useEffect(() => {
     // Fetch faculty data from an API route
     const fetchFacultyData = async () => {
+      setLoading(true);
       try {
-        const response = await fetch("https://pomkara-high-school-server.vercel.app/faculty");
+        const response = await fetch(
+          "https://pomkara-high-school-server.vercel.app/faculty"
+        );
         const data = await response.json();
         const approvedFaculties = data.filter((faculty) => faculty.isApprove);
 
@@ -28,7 +31,18 @@ export default function Faculty() {
   }, []);
 
   if (loading) {
-    return <p className="text-center text-lg py-10">Loading...</p>;
+    return (
+      <div className="mt-5 text-center">
+        <span className="loading loading-spinner text-primary"></span>
+        <span className="loading loading-spinner text-secondary"></span>
+        <span className="loading loading-spinner text-accent"></span>
+        <span className="loading loading-spinner text-neutral"></span>
+        <span className="loading loading-spinner text-info"></span>
+        <span className="loading loading-spinner text-success"></span>
+        <span className="loading loading-spinner text-warning"></span>
+        <span className="loading loading-spinner text-error"></span>
+      </div>
+    );
   }
 
   const displayedFaculties = showAll ? faculties : faculties.slice(0, 6);
@@ -57,7 +71,7 @@ export default function Faculty() {
           property="og:image"
           content="[URL to an image related to faculty or the school]"
         />
-        <meta property="og:url" content="[Your school’s website URL]/faculty" />
+        <meta property="og:url" content="https://pomkara-high-school.netlify.app/components/faculty" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"

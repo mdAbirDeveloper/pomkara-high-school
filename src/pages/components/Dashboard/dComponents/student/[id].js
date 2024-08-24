@@ -227,7 +227,9 @@ const StudentDetails = () => {
     if (id) {
       const fetchStudent = async () => {
         try {
-          const response = await fetch(`https://pomkara-high-school-server.vercel.app/students/${id}`);
+          const response = await fetch(
+            `https://pomkara-high-school-server.vercel.app/students/${id}`
+          );
           if (!response.ok) {
             throw new Error("Failed to fetch student details");
           }
@@ -243,7 +245,18 @@ const StudentDetails = () => {
   }, [id]);
 
   if (!student) {
-    return <p>Loading...</p>;
+    return (
+      <div className="mt-5 text-center">
+        <span className="loading loading-spinner text-primary"></span>
+        <span className="loading loading-spinner text-secondary"></span>
+        <span className="loading loading-spinner text-accent"></span>
+        <span className="loading loading-spinner text-neutral"></span>
+        <span className="loading loading-spinner text-info"></span>
+        <span className="loading loading-spinner text-success"></span>
+        <span className="loading loading-spinner text-warning"></span>
+        <span className="loading loading-spinner text-error"></span>
+      </div>
+    );
   }
 
   if (!["teacher", "principle", "faculty"].includes(user?.role)) {
