@@ -160,9 +160,13 @@ const StudentLogin = () => {
           )}
 
           <div>
-            <button type="submit" className="btn bg-green-400 w-full">
+            {
+              student ? <button disabled className="btn bg-green-400 w-full">
+              Already Login
+            </button> : <button type="submit" className="btn bg-green-400 w-full">
               {loading ? "...." : "Login"}
             </button>
+            }
           </div>
         </form>
       </div>

@@ -211,8 +211,8 @@ const Profile = () => {
           <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
             Student Details
           </h2>
-          <table className="md:w-1/3 mx-auto border divide-y divide-gray-200">
-            <tbody className="divide-y divide-gray-200">
+          <table className="md:w-1/3 w-full mx-auto border divide-gray-200">
+            <tbody className=" divide-gray-200">
               <tr>
                 <td className="px-6 py-3 font-semibold text-gray-600">Class</td>
                 <td className="px-6 py-3 text-gray-800">{student?.class}</td>
@@ -279,14 +279,7 @@ const Profile = () => {
                   {student?.creator?.name}
                 </td>
               </tr>
-              <tr>
-                <td className="px-6 py-3 font-semibold text-gray-600">
-                  Creator Email
-                </td>
-                <td className="px-6 py-3 text-gray-800">
-                  {student?.creator?.email}
-                </td>
-              </tr>
+              
               <tr>
                 <td className="px-6 py-3 font-semibold text-gray-600">
                   Total Due Payment
@@ -357,7 +350,7 @@ const Profile = () => {
               Details about Due_payment
             </h1>
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-green-400">
+              <thead className="bg-yellow-400">
                 <tr>
                   <th className="px-6 py-3 text-left font-medium text-white border ">
                     Take

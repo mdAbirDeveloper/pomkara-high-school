@@ -256,6 +256,7 @@ const Navbar = () => {
               <>
               <Link
               href="/components/profile"
+              onClick={toggleMenu}
               className="block bg-green-500 text-white py-2 w-full mb-2 rounded hover:bg-blue-600 transition-all text-center"
             >
               profile
