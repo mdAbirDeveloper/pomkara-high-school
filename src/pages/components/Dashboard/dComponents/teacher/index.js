@@ -6,7 +6,7 @@ import {
   deleteTeacher,
   fetchTeacherData,
   unapproveTeacher,
-} from "@/pages/Redux/api/teacher";
+} from "../../../../../../Redux/api/teacher";
 import { FaTrash } from "react-icons/fa";
 
 const Teacher = () => {

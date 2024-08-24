@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { AuthContext } from "@/pages/Authentication";
 import { useDispatch, useSelector } from "react-redux";
-import { setStudent } from "@/pages/Redux/features/studentSlice";
-import { logout } from "@/pages/Redux/features/authSlice";
+import { setStudent } from "../../../../Redux/features/studentSlice";
+import { logout } from "../../../../Redux/features/authSlice";
 import { useRouter } from "next/router";
 
 const Navbar = () => {

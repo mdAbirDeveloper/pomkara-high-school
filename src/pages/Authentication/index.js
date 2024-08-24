@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import auth from "../../../firebase";
 import { useDispatch } from "react-redux";
-import { logoutUser } from "@/pages/Redux/features/userSlice";
+import { logoutUser } from "../../../Redux/features/userSlice";
 
 export const AuthContext = createContext();
 

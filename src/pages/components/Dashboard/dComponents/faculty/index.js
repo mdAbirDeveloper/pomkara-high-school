@@ -6,7 +6,7 @@ import {
   deletefaculty,
   fetchFacultyData,
   unapproveFaculty,
-} from "@/pages/Redux/api/faculty";
+} from "../../../../../../Redux/api/faculty";
 import { FaTrash } from "react-icons/fa";
 
 const Faculty = () => {

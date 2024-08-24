@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import Layout from "./Layout";
 import { Provider } from "react-redux";
-import store from "@/pages/Redux/app/store";
+import store from "../../Redux/app/store";
 import Authentication from "./Authentication";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 

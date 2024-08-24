@@ -8,7 +8,7 @@ import {
   fetchUserFailure,
   fetchUserStart,
   fetchUserSuccess,
-} from "@/pages/Redux/features/userSlice";
+} from "../../../../Redux/features/userSlice";
 import { AuthContext } from "@/pages/Authentication";
 import { useRouter } from "next/router";
 import Head from "next/head";
