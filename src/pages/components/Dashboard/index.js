@@ -41,7 +41,7 @@ const PrincipleDashboard = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="flex items-center justify-center mt-10 mb-3 bg-gray-100">
         <div className="bg-white shadow-lg rounded-lg p-6 max-w-md mx-auto text-center sm:p-8">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
             Welcome to Your Dashboard!

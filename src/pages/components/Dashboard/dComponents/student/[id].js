@@ -219,7 +219,6 @@ const StudentDetails = () => {
     ? calculatePaidTotal(student.paid_payment)
     : 0;
 
-
   const totalAmount = totalDueAmount - totalPaidAmount;
 
   useEffect(() => {
@@ -312,11 +311,11 @@ const StudentDetails = () => {
             Previous Years Due: {student.last_year_due}
           </p>
         </div>
-        <div className="flex justify-between">
+        <div className="flex">
           {["teacher", "principle"].includes(user?.role) && (
             <>
               <button
-                className="btn btn-success px-4 mt-2 rounded-none text-white"
+                className="btn mr-1 btn-success px-4 mt-2 rounded-none text-white"
                 onClick={() =>
                   router.push(
                     `/components/Dashboard/dComponents/student/update/${student._id}`
@@ -327,7 +326,7 @@ const StudentDetails = () => {
               </button>
               <div>
                 <button
-                  className="btn btn-info rounded-none text-white px-4 mt-2"
+                  className="btn mr-1 btn-info rounded-none text-white px-4 mt-2"
                   onClick={handleDueModalOpen}
                 >
                   Add Amount
@@ -467,7 +466,7 @@ const StudentDetails = () => {
         {["teacher", "principle"].includes(user?.role) && (
           <div className="text-center">
             <button
-              className="btn btn-success text-white rounded-none px-4 mt-2"
+              className="btn w-full btn-success text-white rounded-none px-4 mt-2"
               onClick={handleOpenResultModal}
             >
               Add Result
