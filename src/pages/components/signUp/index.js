@@ -163,7 +163,7 @@ const SignUp = () => {
                 className="w-full p-1 border border-green-500"
                 cols={20}
                 rows={10}
-                placeholder="write anout your self. like your qualification, experience and etc"
+                placeholder="Write About your self. like your qualification, experience and etc"
               ></textarea>
             </div>
             <div className="mb-2">
