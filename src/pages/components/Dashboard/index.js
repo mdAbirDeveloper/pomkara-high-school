@@ -7,6 +7,7 @@ const PrincipleDashboard = () => {
   const [searchKey, setSearchKey] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -20,6 +21,7 @@ const PrincipleDashboard = () => {
   };
 
   const handleSearch = async () => {
+    setLoading(true);
     try {
       const response = await fetch(
         `https://pomkara-high-school-server.vercel.app/students/search/${searchKey}`
@@ -29,11 +31,14 @@ const PrincipleDashboard = () => {
       if (response.ok) {
         const data = await response.json();
         setSearchResults(data);
+        setLoading(false);
       } else {
-        alert("No students found");
+        setLoading(false);
+        alert("No students match with your search");
         setSearchResults([]);
       }
     } catch (error) {
+      setLoading(false);
       console.error("Error fetching students:", error);
       alert("An error occurred while searching.");
     }
@@ -70,6 +75,20 @@ const PrincipleDashboard = () => {
           </div>
         </div>
       </div>
+      {loading && (
+        <>
+          <div className="mt-5 text-center">
+            <span className="loading loading-spinner text-primary"></span>
+            <span className="loading loading-spinner text-secondary"></span>
+            <span className="loading loading-spinner text-accent"></span>
+            <span className="loading loading-spinner text-neutral"></span>
+            <span className="loading loading-spinner text-info"></span>
+            <span className="loading loading-spinner text-success"></span>
+            <span className="loading loading-spinner text-warning"></span>
+            <span className="loading loading-spinner text-error"></span>
+          </div>
+        </>
+      )}
       {searchResults.length > 0 && (
         <div className="overflow-x-auto">
           <table className="table-auto w-full border-collapse border border-green-500">
