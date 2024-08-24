@@ -33,7 +33,7 @@ const Login = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/user/login?email=${encodeURIComponent(email)}`
+        `https://pomkara-high-school-server.vercel.app/user/login?email=${encodeURIComponent(email)}`
       );
       const userData = await response.json();
       

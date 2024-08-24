@@ -29,7 +29,7 @@ const Profile = () => {
     if (id) {
       const fetchStudent = async () => {
         try {
-          const response = await fetch(`http://localhost:5000/students/${id}`);
+          const response = await fetch(`https://pomkara-high-school-server.vercel.app/students/${id}`);
           if (!response.ok) {
             throw new Error("Failed to fetch student details");
           }
@@ -74,7 +74,7 @@ const Profile = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/students/changePassword/${id}`,
+        `https://pomkara-high-school-server.vercel.app/students/changePassword/${id}`,
         {
           method: "PATCH",
           headers: {

@@ -37,7 +37,7 @@ const AddMoney = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/add-money", {
+      const response = await fetch("https://pomkara-high-school-server.vercel.app/add-money", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

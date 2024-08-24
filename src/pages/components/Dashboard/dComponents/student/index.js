@@ -10,7 +10,7 @@ const fetchStudents = async ({ queryKey }) => {
   const [_key, targeted_class] = queryKey;
 
   const response = await fetch(
-    `http://localhost:5000/students?targeted_class=${targeted_class}`,
+    `https://pomkara-high-school-server.vercel.app/students?targeted_class=${targeted_class}`,
     {
       method: "GET",
       headers: {
@@ -28,7 +28,7 @@ const fetchStudents = async ({ queryKey }) => {
 
 // Function to delete a student by ID
 const deleteStudent = async (studentId) => {
-  const response = await fetch(`http://localhost:5000/students/${studentId}`, {
+  const response = await fetch(`https://pomkara-high-school-server.vercel.app/students/${studentId}`, {
     method: "DELETE",
   });
 
@@ -142,7 +142,7 @@ const Student = () => {
       // Make the API request to update the student on the backend
       try {
         const response = await fetch(
-          `http://localhost:5000/students/promote/${studentId}`,
+          `https://pomkara-high-school-server.vercel.app/students/promote/${studentId}`,
           {
             method: "PATCH",
             headers: {

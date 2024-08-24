@@ -7,7 +7,7 @@ export const fetchFacultyData = () => {
     return (dispatch) => {
       dispatch(fetchFacultyStart());
       
-      fetch('http://localhost:5000/faculty') // Adjust the URL to your API endpoint
+      fetch('https://pomkara-high-school-server.vercel.app/faculty') // Adjust the URL to your API endpoint
         .then((response) => response.json())
         .then((data) => {
           dispatch(fetchFacultySuccess(data));
@@ -23,7 +23,7 @@ export const fetchFacultyData = () => {
 export const approveFaculty = createAsyncThunk(
     'faculty/approve',
     async (facultyId) => {
-      const response = await fetch(`http://localhost:5000/facultys/approve/${facultyId}`, {
+      const response = await fetch(`https://pomkara-high-school-server.vercel.app/facultys/approve/${facultyId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ export const approveFaculty = createAsyncThunk(
   export const unapproveFaculty = createAsyncThunk(
     'faculty/unapprovefaculty',
     async (facultyId, { dispatch }) => {
-      const response = await fetch(`http://localhost:5000/facultys/unapprove/${facultyId}`, {
+      const response = await fetch(`https://pomkara-high-school-server.vercel.app/facultys/unapprove/${facultyId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ export const approveFaculty = createAsyncThunk(
   export const deletefaculty = createAsyncThunk(
     'faculty/deletefaculty',
     async (facultyId, { dispatch }) => {
-      const response = await fetch(`http://localhost:5000/facultys/${facultyId}`, {
+      const response = await fetch(`https://pomkara-high-school-server.vercel.app/facultys/${facultyId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

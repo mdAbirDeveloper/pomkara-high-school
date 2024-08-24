@@ -14,7 +14,7 @@ export default function Faculty() {
       setLoading(true);
       try {
         const response = await fetch(
-          "http://localhost:5000/faculty"
+          "https://pomkara-high-school-server.vercel.app/faculty"
         );
         const data = await response.json();
         const approvedFaculties = data.filter((faculty) => faculty.isApprove);

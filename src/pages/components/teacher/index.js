@@ -14,7 +14,7 @@ export default function Teacher() {
       setLoading(true)
       try {
         const response = await fetch(
-          "http://localhost:5000/teachers"
+          "https://pomkara-high-school-server.vercel.app/teachers"
         );
         const data = await response.json();
         const approvedTeacher = data.filter((faculty) => faculty.isApprove);
