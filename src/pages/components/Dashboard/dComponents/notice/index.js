@@ -27,7 +27,7 @@ const Notice = () => {
 
 
   const fetchNotices = async () => {
-    const response = await fetch("https://pomkara-high-school-server.vercel.app/getNotices");
+    const response = await fetch("http://localhost:5000/getNotices");
     if (!response.ok) {
       throw new Error("Failed to fetch Notice");
     }
@@ -75,7 +75,7 @@ const Notice = () => {
         uploader: {name: user?.name, email: user?.email}
       };
 
-      const response = await fetch("https://pomkara-high-school-server.vercel.app/addNotice", {
+      const response = await fetch("http://localhost:5000/addNotice", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -104,7 +104,7 @@ const Notice = () => {
       try {
         // Delete notice from MongoDB
         const response = await fetch(
-          `https://pomkara-high-school-server.vercel.app/deleteNotice/${id}`,
+          `http://localhost:5000/deleteNotice/${id}`,
           {
             method: "DELETE",
           }

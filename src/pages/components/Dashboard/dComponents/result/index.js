@@ -28,7 +28,7 @@ const Result = () => {
 
   const fetchResult = async () => {
     const response = await fetch(
-      "https://pomkara-high-school-server.vercel.app/getResult"
+      "http://localhost:5000/getResult"
     );
     if (!response.ok) {
       throw new Error("Failed to fetch Result");
@@ -77,7 +77,7 @@ const Result = () => {
       };
 
       const response = await fetch(
-        "https://pomkara-high-school-server.vercel.app/addResult",
+        "http://localhost:5000/addResult",
         {
           method: "POST",
           headers: {
@@ -105,7 +105,7 @@ const Result = () => {
       try {
         // Delete result from MongoDB
         const response = await fetch(
-          `https://pomkara-high-school-server.vercel.app/deleteResult/${id}`,
+          `http://localhost:5000/deleteResult/${id}`,
           {
             method: "DELETE",
           }

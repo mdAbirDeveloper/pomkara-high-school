@@ -36,6 +36,9 @@ const DashboardLayout = ({ children }) => {
             <li className="text-white text-lg mr-2 uppercase font-serif bg-green-500 text-center mb-2 p-3">
               <Link href={"/components/Dashboard/dComponents/result"}>result</Link>
             </li>
+            <li className="text-white text-lg mr-2 uppercase font-serif bg-green-500 text-center mb-2 p-3">
+              <Link href={"/components/Dashboard/dComponents/addMoney"}>Add Money</Link>
+            </li>
           </ul>
         </div>
         <div className="w-full md:hidden block">
@@ -65,6 +68,9 @@ const DashboardLayout = ({ children }) => {
               </li>
               <li onClick={offMenu} className="text-white text-lg mr-2 uppercase font-serif bg-green-500 text-center mb-2 p-3">
                 <Link href={"/components/Dashboard/dComponents/result"}>result</Link>
+              </li>
+              <li onClick={offMenu} className="text-white text-lg mr-2 uppercase font-serif bg-green-500 text-center mb-2 p-3">
+                <Link href={"/components/Dashboard/dComponents/addMoney"}>Add Money</Link>
               </li>
             </ul>
           )}

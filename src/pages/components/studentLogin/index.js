@@ -23,7 +23,7 @@ const StudentLogin = () => {
     setLoading(true);
     const { class: studentClass, class_role, number, password } = data;
     try {
-      const response = await fetch("https://pomkara-high-school-server.vercel.app/student/login", {
+      const response = await fetch("http://localhost:5000/student/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

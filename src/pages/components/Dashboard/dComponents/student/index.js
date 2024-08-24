@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../DashboardLayout";
 import { useForm } from "react-hook-form";
-import { FaPen, FaTrash } from "react-icons/fa";
+import { FaArrowAltCircleUp, FaPen, FaTrash } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
@@ -10,7 +10,7 @@ const fetchStudents = async ({ queryKey }) => {
   const [_key, targeted_class] = queryKey;
 
   const response = await fetch(
-    `https://pomkara-high-school-server.vercel.app/students?targeted_class=${targeted_class}`,
+    `http://localhost:5000/students?targeted_class=${targeted_class}`,
     {
       method: "GET",
       headers: {
@@ -28,7 +28,7 @@ const fetchStudents = async ({ queryKey }) => {
 
 // Function to delete a student by ID
 const deleteStudent = async (studentId) => {
-  const response = await fetch(`https://pomkara-high-school-server.vercel.app/students/${studentId}`, {
+  const response = await fetch(`http://localhost:5000/students/${studentId}`, {
     method: "DELETE",
   });
 
@@ -114,6 +114,88 @@ const Student = () => {
       })
     : [];
 
+  const handlePushStudent = async (studentId) => {
+    // Show a confirmation dialog before running the function
+    const confirmPromotion = window.confirm(
+      "Are you sure you want to promote this student to the next class?"
+    );
+
+    if (!confirmPromotion) {
+      // If the user cancels, exit the function
+      return;
+    }
+
+    const student = sortedStudents.find((s) => s._id === studentId);
+
+    if (student) {
+      // Calculate total due payment (frontend calculation)
+      const totalDuePayment =
+        student.due_payment.reduce((acc, curr) => {
+          const amount = parseFloat(curr.amount) || 0;
+          return acc + amount;
+        }, 0) -
+        student.paid_payment.reduce((acc, curr) => {
+          const amount = parseFloat(curr.amount) || 0;
+          return acc + amount;
+        }, 0);
+
+      // Make the API request to update the student on the backend
+      try {
+        const response = await fetch(
+          `http://localhost:5000/students/promote/${studentId}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              totalDuePayment, // Send the total due payment to the backend
+            }),
+          }
+        );
+
+        if (response.ok) {
+          console.log("Student promoted successfully");
+          queryClient.invalidateQueries(["students", selectedClass]);
+          // Handle any UI updates after successful promotion
+        } else {
+          console.error("Failed to promote student");
+        }
+      } catch (error) {
+        console.error("Error promoting student:", error);
+      }
+    }
+  };
+
+  const totalDueOnThisClass = sortedStudents
+    ?.reduce((studentAcc, student) => {
+      const studentTotal = student.due_payment
+        .filter((payment) => payment.isPaid === false) // Filter only unpaid dues
+        .reduce((paymentAcc, payment) => {
+          const amount = parseFloat(payment.amount) || 0;
+          return paymentAcc + amount;
+        }, 0);
+
+      return studentAcc + studentTotal;
+    }, 0)
+    .toFixed(2);
+
+  // console.log(total);
+
+  const totalPaidOnThisClass = sortedStudents
+    ?.reduce((studentAcc, student) => {
+      const studentTotal = student.paid_payment.reduce(
+        (paymentAcc, payment) => {
+          const amount = parseFloat(payment.amount) || 0;
+          return paymentAcc + amount;
+        },
+        0
+      );
+
+      return studentAcc + studentTotal;
+    }, 0)
+    .toFixed(2);
+
   if (
     !["teacher", "principle", "faculty"].includes(user?.role) ||
     user?.isApprove == false
@@ -173,6 +255,15 @@ const Student = () => {
 
           {sortedStudents && sortedStudents.length > 0 ? (
             <div className="overflow-x-auto">
+              <div>
+                <h2 className="text-xl font-serif font-bold">
+                  Total Due of this class :{" "}
+                  {totalDueOnThisClass - totalPaidOnThisClass}
+                </h2>
+                <h2 className="text-xl font-serif font-bold">
+                  Total Paid from this class : {totalPaidOnThisClass}
+                </h2>
+              </div>
               <table className="table-auto w-full border-collapse border border-green-500">
                 <thead>
                   <tr className="bg-green-500 text-white">
@@ -186,6 +277,7 @@ const Student = () => {
                     <th className="border border-green-500 px-4 py-2">
                       Details
                     </th>
+                    <th className="border border-green-500 px-4 py-2">Push</th>
                     <th className="border border-green-500 px-4 py-2">
                       Delete
                     </th>
@@ -201,12 +293,16 @@ const Student = () => {
                         {student.class_role}
                       </td>
                       <td className="border border-green-500 px-1 py-2 text-center">
-                        {student.due_payment
-                          .reduce((acc, curr) => {
+                        {(
+                          student.due_payment.reduce((acc, curr) => {
+                            const amount = parseFloat(curr.amount) || 0;
+                            return acc + amount;
+                          }, 0) -
+                          student.paid_payment.reduce((acc, curr) => {
                             const amount = parseFloat(curr.amount) || 0;
                             return acc + amount;
                           }, 0)
-                          .toFixed(2)}
+                        ).toFixed(2)}
                       </td>
                       <td className="border border-green-500 px-1 py-2 text-center text-green-600">
                         <button
@@ -216,6 +312,18 @@ const Student = () => {
                           <FaPen />
                         </button>
                       </td>
+                      {["teacher", "principle"].includes(user?.role) && (
+                        <>
+                          <td className="border border-green-500 px-1 py-2 text-center text-green-600">
+                            <button
+                              onClick={() => handlePushStudent(student._id)}
+                              className="btn btn-outline text-green-500 px-5"
+                            >
+                              <FaArrowAltCircleUp />
+                            </button>
+                          </td>
+                        </>
+                      )}
                       {["teacher", "principle"].includes(user?.role) && (
                         <>
                           <td className="border border-green-500 px-1 py-2 text-center text-green-600">

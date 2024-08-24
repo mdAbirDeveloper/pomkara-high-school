@@ -58,7 +58,7 @@ const addStudent = () => {
 
       if (creator) {
         try {
-          const response = await fetch("https://pomkara-high-school-server.vercel.app/students", {
+          const response = await fetch("http://localhost:5000/addStudents", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

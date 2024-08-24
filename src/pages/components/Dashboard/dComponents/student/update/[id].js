@@ -28,7 +28,7 @@ const UpdateStudent = () => {
   // Fetch the student's current data
   useEffect(() => {
     if (id) {
-      fetch(`https://pomkara-high-school-server.vercel.app/students/${id}`)
+      fetch(`http://localhost:5000/students/${id}`)
         .then((response) => response.json())
         .then((data) => {
           setStudent(data);
@@ -50,7 +50,7 @@ const UpdateStudent = () => {
   const onSubmit = (updatedStudent) => {
     setLoading(true);
     // Send the updated data to your backend using PATCH
-    fetch(`https://pomkara-high-school-server.vercel.app/students/update/${id}`, {
+    fetch(`http://localhost:5000/students/update/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

@@ -60,7 +60,7 @@ const SignUp = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed up
-        fetch("https://pomkara-high-school-server.vercel.app/user", {
+        fetch("http://localhost:5000/user", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

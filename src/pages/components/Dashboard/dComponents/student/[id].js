@@ -79,7 +79,7 @@ const StudentDetails = () => {
 
     try {
       const response = await fetch(
-        `https://pomkara-high-school-server.vercel.app/students/addAmount/${studentId}`,
+        `http://localhost:5000/students/addAmount/${studentId}`,
         {
           method: "POST",
           headers: {
@@ -97,7 +97,7 @@ const StudentDetails = () => {
 
       // Re-fetch student data after successful addition
       const updatedStudentResponse = await fetch(
-        `https://pomkara-high-school-server.vercel.app/students/${id}`
+        `http://localhost:5000/students/${id}`
       );
       if (!updatedStudentResponse.ok) {
         throw new Error("Failed to fetch updated student details");
@@ -122,7 +122,7 @@ const StudentDetails = () => {
 
     try {
       const response = await fetch(
-        `https://pomkara-high-school-server.vercel.app/students/cutAmount/${studentId}`,
+        `http://localhost:5000/students/cutAmount/${studentId}`,
         {
           method: "POST",
           headers: {
@@ -140,7 +140,7 @@ const StudentDetails = () => {
 
       // Re-fetch student data after successful addition
       const updatedStudentResponse = await fetch(
-        `https://pomkara-high-school-server.vercel.app/students/${id}`
+        `http://localhost:5000/students/${id}`
       );
       if (!updatedStudentResponse.ok) {
         throw new Error("Failed to fetch updated student details");
@@ -167,7 +167,7 @@ const StudentDetails = () => {
 
     try {
       const response = await fetch(
-        `https://pomkara-high-school-server.vercel.app/students/addResult/${studentId}`,
+        `http://localhost:5000/students/addResult/${studentId}`,
         {
           method: "POST",
           headers: {
@@ -185,7 +185,7 @@ const StudentDetails = () => {
 
       // Re-fetch student data after successful addition
       const updatedStudentResponse = await fetch(
-        `https://pomkara-high-school-server.vercel.app/students/${id}`
+        `http://localhost:5000/students/${id}`
       );
       if (!updatedStudentResponse.ok) {
         setLoading(false);
@@ -219,7 +219,6 @@ const StudentDetails = () => {
     ? calculatePaidTotal(student.paid_payment)
     : 0;
 
-  console.log("due", totalDueAmount, "paid", totalPaidAmount);
 
   const totalAmount = totalDueAmount - totalPaidAmount;
 
@@ -228,7 +227,7 @@ const StudentDetails = () => {
       const fetchStudent = async () => {
         try {
           const response = await fetch(
-            `https://pomkara-high-school-server.vercel.app/students/${id}`
+            `http://localhost:5000/students/${id}`
           );
           if (!response.ok) {
             throw new Error("Failed to fetch student details");
@@ -308,6 +307,9 @@ const StudentDetails = () => {
           </p>
           <p className="font-bold font-serif text-md text-left border mt-0 py-3">
             Mothers Number: {student.mothers_number}
+          </p>
+          <p className="font-bold font-serif text-red-400 text-md text-left border mt-0 py-3">
+            Previous Years Due: {student.last_year_due}
           </p>
         </div>
         <div className="flex justify-between">
