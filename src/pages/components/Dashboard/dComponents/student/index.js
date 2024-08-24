@@ -43,10 +43,10 @@ const Student = () => {
   const { register } = useForm();
   const [selectedClass, setSelectedClass] = useState("");
   const router = useRouter();
-  const [user, setUser] = useState(null);
   const queryClient = useQueryClient();
   const [sortBy, setSortBy] = useState("class_role"); // Default sorting by class_role
-
+  
+  const [user, setUser] = useState(null);
   useEffect(() => {
     if (typeof window !== "undefined") {
       const userData = JSON.parse(localStorage.getItem("user"));
