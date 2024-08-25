@@ -40,7 +40,7 @@ const Navbar = () => {
     router.push("/components/studentLogin"); // Redirect to login page after logout
   };
 
-  console.log(userFromDb?.name);
+  //console.log(userFromDb?.name);
   useEffect(() => {
     if (typeof window !== "undefined") {
       const userData = JSON.parse(localStorage.getItem("user"));

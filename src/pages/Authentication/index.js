@@ -32,7 +32,7 @@ const Authentication = ({ children }) => {
         // After successfully signing out, reset the user slice to initial state
         dispatch(logoutUser());
         localStorage.removeItem("user")
-        console.log('User signed out successfully');
+        //console.log('User signed out successfully');
       })
       .catch((error) => {
         console.error('Error signing out:', error);

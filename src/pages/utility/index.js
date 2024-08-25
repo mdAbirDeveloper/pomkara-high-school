@@ -10,7 +10,7 @@ function TruncatedText({ text = '', maxWords = 40 }) {
     : words.slice(0, maxWords).join(' ') + (isLongText ? '...' : '');
 
   return (
-    <div className="mt-4 text-gray-600">
+    <div className="mt-4 ">
       <p>{displayedText}</p>
       {isLongText && (
         <button

@@ -41,7 +41,7 @@ const SignUp = () => {
     );
 
     const imgbbData = await imgbbResponse.json();
-    console.log(imgbbData);
+    //console.log(imgbbData);
 
     if (!imgbbResponse.ok || !imgbbData.success) {
       throw new Error("Failed to upload image to imgbb");
@@ -79,7 +79,7 @@ const SignUp = () => {
         setError(errorMessage);
         setLoading(false);
       });
-    console.log(name, role, email, password);
+    //console.log(name, role, email, password);
   };
 
   return (

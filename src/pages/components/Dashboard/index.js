@@ -26,7 +26,7 @@ const PrincipleDashboard = () => {
       const response = await fetch(
         `https://pomkara-high-school-server.vercel.app/students/search/${searchKey}`
       );
-      console.log(searchKey);
+      //console.log(searchKey);
 
       if (response.ok) {
         const data = await response.json();
@@ -48,14 +48,14 @@ const PrincipleDashboard = () => {
     <div>
       <div className="flex items-center justify-center mt-10 mb-3 bg-gray-100">
         <div className="bg-white shadow-lg rounded-lg p-6 max-w-md mx-auto text-center sm:p-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
+          <h1 className="text-2xl sm:text-3xl font-bold  mb-4">
             Welcome to Your Dashboard!
           </h1>
-          <p className="text-gray-600 mb-4 sm:mb-6">
+          <p className=" mb-4 sm:mb-6">
             Manage all the features of the Pomkara Siddikur Rahman & Hakim High
             School website from here.
           </p>
-          <label className="block text-gray-700 font-medium mb-2">
+          <label className="block  font-medium mb-2">
             Search student by name or role
           </label>
           <div className="flex flex-col sm:flex-row items-center sm:justify-center">

@@ -18,7 +18,7 @@ const Notice = () => {
         }
         const data = await response.json();
         setNotices(data);
-        console.log(data);
+        //console.log(data);
       } catch (err) {
         setError(err.message);
       } finally {

@@ -20,7 +20,7 @@ const Contact = () => {
     setSubmited("");
     setError("");
     try {
-      //console.log(project);
+      ////console.log(project);
       const message = {
         name: data.name,
         email: data.email,
@@ -39,7 +39,7 @@ const Contact = () => {
       // const result = await response.json();
       setSubmited("your message send successfully");
       setLoading(false);
-      console.log(result);
+      //console.log(result);
     } catch (error) {
       console.error("Error uploading images or sending data:", error);
       // setError('message not send, something are wrong')
@@ -65,11 +65,8 @@ const Contact = () => {
       </Head>
       <div className="max-w-[800px] mx-auto min-h-screen mt-20 px-2">
         <div className="text-center">
-          {/* <div>
-            <img src="" className="p-2 border" />
-          </div> */}
           <div>
-            <h1 className="my-5 md:text-5xl text-3xl font-bold font-serif uppercase text-green-700 opacity-70">
+            <h1 className="my-5 md:text-5xl text-3xl font-bold font-serif uppercase text-green-700">
               Get in Touch with Us
             </h1>
             <div className="divider md:w-1/3 w-full mx-auto">X</div>

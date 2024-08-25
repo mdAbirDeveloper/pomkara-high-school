@@ -29,7 +29,9 @@ const Profile = () => {
     if (id) {
       const fetchStudent = async () => {
         try {
-          const response = await fetch(`https://pomkara-high-school-server.vercel.app/students/${id}`);
+          const response = await fetch(
+            `https://pomkara-high-school-server.vercel.app/students/${id}`
+          );
           if (!response.ok) {
             throw new Error("Failed to fetch student details");
           }
@@ -112,14 +114,14 @@ const Profile = () => {
           <p className="text-2xl font-serif text-red-500 mb-4">
             You cannot see anything on this page after sign out
           </p>
-          <p className="text-gray-700 mb-4">Please go back to the home page.</p>
+          <p className=" mb-4">Please go back to the home page.</p>
           <Link
             href="/"
             className="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg font-medium text-lg hover:bg-blue-600 transition"
           >
             Home
           </Link>
-          <p className="text-gray-700 mb-4 mt-3">Or Login again.</p>
+          <p className=" mb-4 mt-3">Or Login again.</p>
           <Link
             href="/components/studentLogin"
             className="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg font-medium text-lg hover:bg-blue-600 transition"
@@ -135,18 +137,21 @@ const Profile = () => {
     <div>
       <div>
         <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-          <div className="bg-blue-500 text-white text-center p-4">
-            <h2 className="text-xl font-bold">Name: {student.name}</h2>
-            <p className="text-sm">
-              password: {student.password || "No Password Provided"}
+          <div className="bg-blue-500 text-white text-center p-6 rounded-lg shadow-lg max-w-sm mx-auto">
+            <h2 className="text-2xl font-bold mb-2 transition-transform duration-300 hover:scale-105">
+              Name: {student.name}
+            </h2>
+            <p className="text-sm mb-4">
+              Password: {student.password || "No Password Provided"}
             </p>
             <button
               onClick={() => setShowModal(true)}
-              className="bg-red-500 text-white px-4 py-2 rounded-lg mt-2 hover:bg-red-600 transition"
+              className="bg-red-500 text-white px-6 py-2 rounded-full transition-colors duration-300 hover:bg-red-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2"
             >
               Change Password
             </button>
           </div>
+
           {/* Modal for changing password */}
           {showModal && (
             <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -208,84 +213,90 @@ const Profile = () => {
           )}
         </div>
         <div className="p-6 bg-white rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
+          <h2 className="text-2xl font-semibold  mb-4 text-center">
             Student Details
           </h2>
-          <table className="md:w-1/3 w-full mx-auto border divide-gray-200">
+          <table className="md:w-1/3 w-full m-2 shadow-xl shadow-green-200 hover:shadow-green-400 mx-auto border divide-gray-200 ">
             <tbody className=" divide-gray-200">
               <tr>
-                <td className="px-6 py-3 font-semibold text-gray-600">Class</td>
-                <td className="px-6 py-3 text-gray-800">{student?.class}</td>
+                <td className="px-6 border border-green-400 py-3 font-semibold ">
+                  Class
+                </td>
+                <td className="px-6 border border-green-400 py-3 ">
+                  {student?.class}
+                </td>
               </tr>
               <tr>
-                <td className="px-6 py-3 font-semibold text-gray-600">
+                <td className="px-6 border border-green-400 py-3 font-semibold ">
                   Class Role
                 </td>
-                <td className="px-6 py-3 text-gray-800">
+                <td className="px-6 border border-green-400 py-3 ">
                   {student?.class_role}
                 </td>
               </tr>
               <tr>
-                <td className="px-6 py-3 font-semibold text-gray-600">
+                <td className="px-6 border border-green-400 py-3 font-semibold ">
                   Number
                 </td>
-                <td className="px-6 py-3 text-gray-800">{student?.number}</td>
+                <td className="px-6 border border-green-400 py-3 ">
+                  {student?.number}
+                </td>
               </tr>
               <tr>
-                <td className="px-6 py-3 font-semibold text-gray-600">
+                <td className="px-6 border border-green-400 py-3 font-semibold ">
                   Fathers Name
                 </td>
-                <td className="px-6 py-3 text-gray-800">
+                <td className="px-6 border border-green-400 py-3 ">
                   {student?.fathers_name}
                 </td>
               </tr>
               <tr>
-                <td className="px-6 py-3 font-semibold text-gray-600">
+                <td className="px-6 border border-green-400 py-3 font-semibold ">
                   Fathers Number
                 </td>
-                <td className="px-6 py-3 text-gray-800">
+                <td className="px-6 border border-green-400 py-3 ">
                   {student?.fathers_number}
                 </td>
               </tr>
               <tr>
-                <td className="px-6 py-3 font-semibold text-gray-600">
+                <td className="px-6 border border-green-400 py-3 font-semibold ">
                   Mothers Name
                 </td>
-                <td className="px-6 py-3 text-gray-800">
+                <td className="px-6 border border-green-400 py-3 ">
                   {student?.mothers_name}
                 </td>
               </tr>
               <tr>
-                <td className="px-6 py-3 font-semibold text-gray-600">
+                <td className="px-6 border border-green-400 py-3 font-semibold ">
                   Mothers Number
                 </td>
-                <td className="px-6 py-3 text-gray-800">
+                <td className="px-6 border border-green-400 py-3 ">
                   {student?.mothers_number}
                 </td>
               </tr>
               <tr>
-                <td className="px-6 py-3 font-semibold text-gray-600">
+                <td className="px-6 border border-green-400 py-3 font-semibold ">
                   Uploaded Time
                 </td>
-                <td className="px-6 py-3 text-gray-800">
+                <td className="px-6 border border-green-400 py-3 ">
                   {new Date(student?.uploadedTime).toLocaleString()}
                 </td>
               </tr>
               <tr>
-                <td className="px-6 py-3 font-semibold text-gray-600">
+                <td className="px-6 border border-green-400 py-3 font-semibold ">
                   Creator
                 </td>
-                <td className="px-6 py-3 text-gray-800">
+                <td className="px-6 border border-green-400 py-3 ">
                   {student?.creator?.name}
                 </td>
               </tr>
-              
+
               <tr>
-                <td className="px-6 py-3 font-semibold text-gray-600">
+                <td className="px-6 border border-green-400 py-3 font-semibold ">
                   Total Due Payment
                 </td>
-                <td className="px-6 py-3 text-red-500 font-bold">
-                  {totalAmount}
+                <td className="px-6 border border-green-400 py-3 text-red-500 font-bold">
+                  {totalAmount} Taka
                 </td>
               </tr>
             </tbody>
@@ -318,30 +329,33 @@ const Profile = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {student?.result?.slice().reverse().map((results, index) => (
-                  <tr key={index}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border">
-                      {results.examType}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border">
-                      {results.subject}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border">
-                      {results.result + " " + "/" + " " + results.mark}
-                    </td>
+                {student?.result
+                  ?.slice()
+                  .reverse()
+                  .map((results, index) => (
+                    <tr key={index}>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border">
+                        {results.examType}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border">
+                        {results.subject}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border">
+                        {results.result + " " + "/" + " " + results.mark}
+                      </td>
 
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border">
-                      {new Date(results.date).toLocaleDateString("en-US", {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                      })}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border">
-                      {results.addedBy.name}
-                    </td>
-                  </tr>
-                ))}
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border">
+                        {new Date(results.date).toLocaleDateString("en-US", {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        })}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border">
+                        {results.addedBy.name}
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>

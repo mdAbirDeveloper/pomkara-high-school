@@ -155,7 +155,7 @@ const Student = () => {
         );
 
         if (response.ok) {
-          console.log("Student promoted successfully");
+          //console.log("Student promoted successfully");
           queryClient.invalidateQueries(["students", selectedClass]);
           // Handle any UI updates after successful promotion
         } else {
@@ -180,7 +180,7 @@ const Student = () => {
     }, 0)
     .toFixed(2);
 
-  // console.log(total);
+  // //console.log(total);
 
   const totalPaidOnThisClass = sortedStudents
     ?.reduce((studentAcc, student) => {

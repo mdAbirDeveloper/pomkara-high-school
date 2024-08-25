@@ -105,7 +105,7 @@ const StudentDetails = () => {
       const updatedStudent = await updatedStudentResponse.json();
       setStudent(updatedStudent);
 
-      console.log("Amount added successfully:", updatedStudent);
+      //console.log("Amount added successfully:", updatedStudent);
       handleDueModalClose();
     } catch (error) {
       setError(error.message);
@@ -148,7 +148,7 @@ const StudentDetails = () => {
       const updatedStudent = await updatedStudentResponse.json();
       setStudent(updatedStudent);
 
-      console.log("Amount cuted successfully:", updatedStudent);
+      //console.log("Amount cuted successfully:", updatedStudent);
       handleCloseModal();
     } catch (error) {
       setError(error.message);
@@ -195,11 +195,11 @@ const StudentDetails = () => {
       setStudent(updatedStudent);
       setLoading(false);
       setSuccess("Result added successfully");
-      console.log("Result added successfully:", updatedStudent);
+      //console.log("Result added successfully:", updatedStudent);
     } catch (err) {
       setLoading(false);
       setSuccess("");
-      console.log("error", err);
+      //console.log("error", err);
     }
   };
 

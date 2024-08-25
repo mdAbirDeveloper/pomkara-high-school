@@ -60,7 +60,7 @@ const Notice = () => {
       );
 
       const imgbbData = await imgbbResponse.json();
-      console.log(imgbbData);
+      //console.log(imgbbData);
 
       if (!imgbbResponse.ok || !imgbbData.success) {
         throw new Error("Failed to upload image to imgbb");
@@ -187,13 +187,13 @@ const Notice = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead>
               <tr>
-                <th className="px-6 py-3 text-left font-medium text-gray-500 bg-gray-50">
+                <th className="px-6 py-3 text-left font-medium  bg-gray-50">
                   Image
                 </th>
-                <th className="px-6 py-3 text-left font-medium text-gray-500 bg-gray-50">
+                <th className="px-6 py-3 text-left font-medium  bg-gray-50">
                   Heading
                 </th>
-                <th className="px-6 py-3 text-left font-medium text-gray-500 bg-gray-50">
+                <th className="px-6 py-3 text-left font-medium  bg-gray-50">
                   Action
                 </th>
               </tr>
@@ -201,17 +201,17 @@ const Notice = () => {
             <tbody>
               {notices?.map((notice) => (
                 <tr key={notice._id}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm ">
                     <img
                       src={notice.image}
                       alt={notice.heading}
                       className="w-24 h-24 object-cover"
                     />
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium ">
                     {notice.heading}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium ">
                     <button
                       className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
                       onClick={() => handleDelete(notice._id, notice.deleteUrl)}

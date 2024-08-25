@@ -84,7 +84,7 @@ const UpdateStudent = () => {
       {student ? (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
-            <label className="block text-gray-700">Name</label>
+            <label className="block ">Name</label>
             <input
               type="text"
               {...register("name", { required: "Name is required" })}
@@ -95,7 +95,7 @@ const UpdateStudent = () => {
             )}
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Password</label>
+            <label className="block ">Password</label>
             <input
               type="text"
               {...register("password", { required: "Password is required" })}
@@ -106,7 +106,7 @@ const UpdateStudent = () => {
             )}
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Number</label>
+            <label className="block ">Number</label>
             <input
               type="text"
               {...register("number", {
@@ -124,7 +124,7 @@ const UpdateStudent = () => {
             )}
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Fathers Name</label>
+            <label className="block ">Fathers Name</label>
             <input
               type="text"
               {...register("fathers_name", {
@@ -137,7 +137,7 @@ const UpdateStudent = () => {
             )}
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Mothers Name</label>
+            <label className="block ">Mothers Name</label>
             <input
               type="text"
               {...register("mothers_name", {
@@ -150,7 +150,7 @@ const UpdateStudent = () => {
             )}
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Fathers Number</label>
+            <label className="block ">Fathers Number</label>
             <input
               type="text"
               {...register("fathers_number", {
@@ -168,7 +168,7 @@ const UpdateStudent = () => {
             )}
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Mothers Number</label>
+            <label className="block ">Mothers Number</label>
             <input
               type="text"
               {...register("mothers_number", {
@@ -186,7 +186,7 @@ const UpdateStudent = () => {
             )}
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Class</label>
+            <label className="block ">Class</label>
             <input
               type="number"
               {...register("class", {
@@ -207,7 +207,7 @@ const UpdateStudent = () => {
             )}
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700">Class Role</label>
+            <label className="block ">Class Role</label>
             <input
               type="text"
               {...register("class_role", {

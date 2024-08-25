@@ -32,7 +32,7 @@ const addStudent = () => {
   const validUser =
     ["teacher", "principle", "faculty"].includes(user?.role) && user?.isApprove == true;
 
-  //   console.log(validUser)
+  //   //console.log(validUser)
 
   const onSubmit = async (formData) => {
     setLoading(true);

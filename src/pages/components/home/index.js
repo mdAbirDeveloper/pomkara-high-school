@@ -38,7 +38,7 @@ const TopSection = () => {
           <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
             <section className="mb-8">
               <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
-              <p className="text-gray-700">
+              <p className="">
                 At Pomkara Siddikur Rahman & Hakim High School, our mission is
                 to provide a nurturing and stimulating learning environment
                 where students can thrive academically, socially, and
@@ -49,7 +49,7 @@ const TopSection = () => {
             </section>
             <section className="mb-8">
               <h2 className="text-2xl font-semibold mb-4">Our Values</h2>
-              <ul className="list-disc pl-5 text-gray-700">
+              <ul className="list-disc pl-5 ">
                 <li>
                   <strong>Excellence:</strong> We strive for the highest
                   standards in education and personal growth.
@@ -76,7 +76,7 @@ const TopSection = () => {
             </section>
             <section>
               <h2 className="text-2xl font-semibold mb-4">Our History</h2>
-              <p className="text-gray-700">
+              <p className="">
                 Founded in [Year], Pomkara Siddikur Rahman & Hakim High School
                 has a rich history of academic excellence and community
                 involvement. Over the years, we have grown into a leading
@@ -97,21 +97,21 @@ const TopSection = () => {
               <h3 className="text-xl font-semibold mb-2">
                 Academic Excellence
               </h3>
-              <p className="text-gray-700">
+              <p className="">
                 Comprehensive curriculum designed to challenge and inspire
                 students.
               </p>
             </div>
             <div className="bg-gray-200 p-6 rounded-lg text-center">
               <h3 className="text-xl font-semibold mb-2">Sports & Athletics</h3>
-              <p className="text-gray-700">
+              <p className="">
                 Diverse athletic programs encouraging teamwork and physical
                 fitness.
               </p>
             </div>
             <div className="bg-gray-200 p-6 rounded-lg text-center">
               <h3 className="text-xl font-semibold mb-2">Clubs & Activities</h3>
-              <p className="text-gray-700">
+              <p className="">
                 A variety of clubs and extracurriculars to nurture creativity
                 and leadership.
               </p>
