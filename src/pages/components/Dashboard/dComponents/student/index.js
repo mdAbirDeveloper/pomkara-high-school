@@ -141,7 +141,7 @@ const Student = () => {
   
         try {
           const response = await fetch(
-            `http://localhost:5000/students/promote/${selectedStudentId}`,
+            `https://pomkara-high-school-server.vercel.app/students/promote/${selectedStudentId}`,
             {
               method: "PATCH",
               headers: {
