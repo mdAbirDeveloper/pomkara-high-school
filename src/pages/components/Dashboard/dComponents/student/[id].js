@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import DashboardLayout from "../../DashboardLayout";
 import ReactModal from "react-modal";
-import { FaDonate, FaEye } from "react-icons/fa";
 
 const StudentDetails = () => {
   const router = useRouter();
