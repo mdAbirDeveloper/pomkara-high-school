@@ -92,12 +92,12 @@ export default function Faculty() {
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {displayedFaculties.map((faculty) => (
-            <div key={faculty._id} className="bg-base-100 shadow-xl">
+            <div key={faculty._id} className="bg-base-100 shadow-xl rounded-xl">
               <div>
                 <img
                   src={faculty.image}
                   alt={`${faculty.name}'s profile`}
-                  className="w-40 h-40 mx-auto"
+                  className="w-40 h-40 mx-auto rounded-full mt-2"
                 />
               </div>
               <div className="text-center p-4">

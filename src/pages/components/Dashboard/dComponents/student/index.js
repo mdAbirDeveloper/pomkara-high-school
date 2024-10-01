@@ -124,8 +124,6 @@ const Student = () => {
   
     const confirmPromotion = async () => {
   
-      if (!confirmPromotion) return;
-  
       const student = sortedStudents.find((s) => s._id === selectedStudentId);
   
       if (student) {
