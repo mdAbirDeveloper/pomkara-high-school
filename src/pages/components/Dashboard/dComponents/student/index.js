@@ -28,9 +28,12 @@ const fetchStudents = async ({ queryKey }) => {
 
 // Function to delete a student by ID
 const deleteStudent = async (studentId) => {
-  const response = await fetch(`https://pomkara-high-school-server.vercel.app/students/${studentId}`, {
-    method: "DELETE",
-  });
+  const response = await fetch(
+    `https://pomkara-high-school-server.vercel.app/students/${studentId}`,
+    {
+      method: "DELETE",
+    }
+  );
 
   if (!response.ok) {
     throw new Error("Failed to delete student");
@@ -48,7 +51,7 @@ const Student = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newClassRole, setNewClassRole] = useState("");
   const [selectedStudentId, setSelectedStudentId] = useState(null);
-  
+
   const [user, setUser] = useState(null);
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -60,7 +63,6 @@ const Student = () => {
   // Use React Query to fetch students
   const {
     data: students,
-    error,
     isLoading,
   } = useQuery({
     queryKey: ["students", selectedClass],
@@ -117,55 +119,53 @@ const Student = () => {
       })
     : [];
 
-    const handlePushStudent = (studentId) => {
-      setSelectedStudentId(studentId);
-      setIsModalOpen(true); // Open the modal when the button is clicked
-    };
-  
-    const confirmPromotion = async () => {
-  
-      const student = sortedStudents.find((s) => s._id === selectedStudentId);
-  
-      if (student) {
-        const totalDuePayment =
-          student.due_payment.reduce((acc, curr) => {
-            const amount = parseFloat(curr.amount) || 0;
-            return acc + amount;
-          }, 0) -
-          student.paid_payment.reduce((acc, curr) => {
-            const amount = parseFloat(curr.amount) || 0;
-            return acc + amount;
-          }, 0);
-  
-        try {
-          const response = await fetch(
-            `https://pomkara-high-school-server.vercel.app/students/promote/${selectedStudentId}`,
-            {
-              method: "PATCH",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                totalDuePayment,
-                newClassRole, // Send the new class role to the backend
-              }),
-            }
-          );
-  
-          if (response.ok) {
-            queryClient.invalidateQueries(["students", selectedClass]);
-          } else {
-            console.error("Failed to promote student");
+  const handlePushStudent = (studentId) => {
+    setSelectedStudentId(studentId);
+    setIsModalOpen(true); // Open the modal when the button is clicked
+  };
+
+  const confirmPromotion = async () => {
+    const student = sortedStudents.find((s) => s._id === selectedStudentId);
+
+    if (student) {
+      const totalDuePayment =
+        student.due_payment.reduce((acc, curr) => {
+          const amount = parseFloat(curr.amount) || 0;
+          return acc + amount;
+        }, 0) -
+        student.paid_payment.reduce((acc, curr) => {
+          const amount = parseFloat(curr.amount) || 0;
+          return acc + amount;
+        }, 0);
+
+      try {
+        const response = await fetch(
+          `https://pomkara-high-school-server.vercel.app/students/promote/${selectedStudentId}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              totalDuePayment,
+              newClassRole, // Send the new class role to the backend
+            }),
           }
-        } catch (error) {
-          console.error("Error promoting student:", error);
+        );
+
+        if (response.ok) {
+          queryClient.invalidateQueries(["students", selectedClass]);
+        } else {
+          console.error("Failed to promote student");
         }
+      } catch (error) {
+        console.error("Error promoting student:", error);
       }
-  
-      setIsModalOpen(false); // Close the modal after promotion
-      setNewClassRole(""); // Reset the class role state
-    };
-  
+    }
+
+    setIsModalOpen(false); // Close the modal after promotion
+    setNewClassRole(""); // Reset the class role state
+  };
 
   const totalDueOnThisClass = sortedStudents
     ?.reduce((studentAcc, student) => {
@@ -315,42 +315,46 @@ const Student = () => {
                       {["teacher", "principle"].includes(user?.role) && (
                         <>
                           <td className="border border-green-500 px-1 py-2 text-center text-green-600">
-                          <button
-        onClick={() => handlePushStudent(student._id)}
-        className="btn btn-outline text-green-500 px-5"
-      >
-        <FaArrowAltCircleUp />
-      </button>
+                            <button
+                              onClick={() => handlePushStudent(student._id)}
+                              className="btn btn-outline text-green-500 px-5"
+                            >
+                              <FaArrowAltCircleUp />
+                            </button>
 
-      {/* Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-md shadow-lg">
-            <h3 className="text-lg font-semibold mb-4">Enter New Class Role</h3>
-            <input
-              type="text"
-              value={newClassRole}
-              onChange={(e) => setNewClassRole(e.target.value)}
-              placeholder="New Class Role"
-              className="border border-gray-300 p-2 w-full mb-4"
-            />
-            <div className="flex justify-end">
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="bg-gray-300 px-4 py-2 rounded-md mr-2"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={confirmPromotion}
-                className="bg-blue-500 text-white px-4 py-2 rounded-md"
-              >
-                Confirm
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+                            {/* Modal */}
+                            {isModalOpen && (
+                              <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                                <div className="bg-white p-6 rounded-md shadow-lg">
+                                  <h3 className="text-lg font-semibold mb-4">
+                                    Enter New Class Role
+                                  </h3>
+                                  <input
+                                    type="text"
+                                    value={newClassRole}
+                                    onChange={(e) =>
+                                      setNewClassRole(e.target.value)
+                                    }
+                                    placeholder="New Class Role"
+                                    className="border border-gray-300 p-2 w-full mb-4"
+                                  />
+                                  <div className="flex justify-end">
+                                    <button
+                                      onClick={() => setIsModalOpen(false)}
+                                      className="bg-gray-300 px-4 py-2 rounded-md mr-2"
+                                    >
+                                      Cancel
+                                    </button>
+                                    <button
+                                      onClick={confirmPromotion}
+                                      className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                                    >
+                                      Confirm
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
                           </td>
                         </>
                       )}
