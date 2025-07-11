@@ -63,6 +63,11 @@ const PrincipleDashboard = () => {
               type="text"
               value={searchKey}
               onChange={(e) => setSearchKey(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch();
+                }
+              }}
               placeholder="Enter search term"
               className="border border-gray-300 rounded px-3 py-2 mb-3 sm:mb-0 sm:mr-2 w-full sm:w-auto"
             />
@@ -70,7 +75,7 @@ const PrincipleDashboard = () => {
               onClick={handleSearch}
               className="bg-blue-500 hover:bg-blue-600 text-white font-medium px-4 py-2 rounded w-full sm:w-auto"
             >
-              Search
+              {loading ? "Searching..." : "Search"}
             </button>
           </div>
         </div>

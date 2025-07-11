@@ -33,6 +33,7 @@ const AddMoney = () => {
     // Flatten the structure
     const finalData = {
       ...data, // Spread form data directly
+      amount: Number(data.amount),
       addedBy: { name: user?.name, email: user?.email }, // Add user details
     };
 
