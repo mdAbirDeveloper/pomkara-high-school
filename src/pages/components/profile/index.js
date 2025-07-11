@@ -279,7 +279,7 @@ const Profile = () => {
                   Uploaded Time
                 </td>
                 <td className="px-6 border border-green-400 py-3 ">
-                  {new Date(student?.uploadedTime).toLocaleString()}
+                  {new Date(student?.createdAt).toLocaleString()}
                 </td>
               </tr>
               <tr>
