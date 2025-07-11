@@ -63,8 +63,9 @@ const PrincipleDashboard = () => {
               type="text"
               value={searchKey}
               onChange={(e) => setSearchKey(e.target.value)}
-              onKeyDown={(e) => {
+              onKeyUp={(e) => {
                 if (e.key === "Enter") {
+                  e.preventDefault(); // Block form submit or reload
                   handleSearch();
                 }
               }}
