@@ -276,7 +276,7 @@ const Profile = () => {
               </tr>
               <tr>
                 <td className="px-6 border border-green-400 py-3 font-semibold ">
-                  Uploaded Time
+                  Admission Date
                 </td>
                 <td className="px-6 border border-green-400 py-3 ">
                   {new Date(student?.createdAt).toLocaleString()}
