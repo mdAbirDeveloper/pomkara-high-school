@@ -1,11 +1,10 @@
-import { decrement, increment } from "../../Redux/features/counterSlice";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
 import Faculty from "./components/faculty";
 import TopSection from "./components/home";
 import Teacher from "./components/teacher";
 import Contact from "./components/contact";
 import Head from "next/head";
+import Gallery from "./components/gallary";
 
 export default function Home() {
 
@@ -27,8 +26,8 @@ export default function Home() {
       </Head>
       <div>
         <TopSection />
-        <Faculty />
         <Teacher />
+        <Gallery />
         <Contact />
       </div>
     </div>

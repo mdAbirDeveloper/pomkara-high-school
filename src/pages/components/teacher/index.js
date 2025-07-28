@@ -1,132 +1,176 @@
 /* eslint-disable @next/next/no-img-element */
-import TruncatedText from "@/pages/utility";
-import Head from "next/head";
-import { useState, useEffect } from "react";
+"use client";
+import { useEffect, useState } from "react";
 
-export default function Teacher() {
-  const [teacher, setTeacher] = useState([]);
+ function Teachers() {
+  const [teachers, setTeachers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
+  const [selectedDepartment, setSelectedDepartment] = useState("");
+
+  const departments = ["Science", "Arts", "Commerce", "Mathematics", "English", "Bangla"];
 
   useEffect(() => {
-    // Fetch faculty data from an API route
-    const fetchFacultyData = async () => {
-      setLoading(true)
+    setLoading(true);
+    const fetchTeachers = async () => {
       try {
-        const response = await fetch(
-          "https://pomkara-high-school-server.vercel.app/teachers"
+        const res = await fetch(
+          `/api/teachers?department=${selectedDepartment}&limit=${showAll ? 50 : 5}`
         );
-        const data = await response.json();
-        const approvedTeacher = data.filter((faculty) => faculty.isApprove);
-
-        setTeacher(approvedTeacher);
+        const data = await res.json();
+        setTeachers(data || []);
       } catch (error) {
-        console.error("Failed to load faculty data:", error);
+        console.error("Failed to fetch teachers:", error);
+        setTeachers([]);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchFacultyData();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="mt-5 text-center">
-        <span className="loading loading-spinner text-primary"></span>
-        <span className="loading loading-spinner text-secondary"></span>
-        <span className="loading loading-spinner text-accent"></span>
-        <span className="loading loading-spinner text-neutral"></span>
-        <span className="loading loading-spinner text-info"></span>
-        <span className="loading loading-spinner text-success"></span>
-        <span className="loading loading-spinner text-warning"></span>
-        <span className="loading loading-spinner text-error"></span>
-      </div>
-    );
-  }
-
-  const displayedTeacher = showAll ? teacher : teacher.slice(0, 6);
+    fetchTeachers();
+  }, [selectedDepartment, showAll]);
 
   return (
-    <div>
-      <Head>
-        <title>
-          Our Teachers | Pomkara Siddikur Rahman & Hakim High School
-        </title>
-        <meta
-          name="description"
-          content="Meet the dedicated teachers at Pomkara Siddikur Rahman & Hakim High School. Discover our team of educators committed to providing quality education and fostering a supportive learning environment."
-        />
-        <meta
-          name="keywords"
-          content="teachers, Pomkara Siddikur Rahman & Hakim High School, educators, faculty, teaching staff"
-        />
-        <meta
-          property="og:title"
-          content="Our Teachers - Pomkara Siddikur Rahman & Hakim High School"
-        />
-        <meta
-          property="og:description"
-          content="Explore the profiles of our dedicated teachers at Pomkara Siddikur Rahman & Hakim High School. Learn about their qualifications and roles in providing excellent education."
-        />
-        <meta
-          property="og:image"
-          content="[URL to an image related to teachers or the school]"
-        />
-        <meta
-          property="og:url"
-          content="https://pomkara-high-school.netlify.app/components/teacher"
-        />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Our Teachers - Pomkara Siddikur Rahman & Hakim High School"
-        />
-        <meta
-          name="twitter:description"
-          content="Meet the teachers of Pomkara Siddikur Rahman & Hakim High School. Find out more about their roles and contributions to our educational community."
-        />
-        <meta
-          name="twitter:image"
-          content="[URL to an image related to teachers or the school]"
-        />
-      </Head>
-      <div className="bg-gray-100 min-h-screen py-10 px-6">
-        <h1 className="text-4xl font-semibold text-center mb-10">
-          Our Teachers
-        </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {displayedTeacher.map((teacher) => (
-            <div key={teacher._id} className="bg-base-100 shadow-xl rounded-xl">
-              <div>
-                <img
-                  src={teacher.image}
-                  alt={`${teacher.name}'s profile`}
-                  className="w-40 h-40 mx-auto rounded-full mt-2"
-                />
-              </div>
-              <div className="text-center p-4">
-                <h2 className="text-xl font-semibold">{teacher.name}</h2>
-                <p>{teacher.email}</p>
-                <p>{teacher.number}</p>
-                <p>
-                  <TruncatedText text={teacher.about} maxWords={40} />
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-        {teacher.length > 6 && (
-          <div className="text-center mt-8">
+    <section id="teachers" className="py-20 bg-white">
+      <div className="container mx-auto px-4">
+        {/* Section Header */}
+        <div className="text-center mb-16 animate-fadeInUp">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
+            Our <span className="text-blue-600">Teachers</span>
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            Meet our dedicated and experienced faculty members who are committed to providing quality education and shaping the future of our students.
+          </p>
+
+          {/* Department Filter */}
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
             <button
-              onClick={() => setShowAll(!showAll)}
-              className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+              onClick={() => setSelectedDepartment("")}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                selectedDepartment === ""
+                  ? "bg-blue-600 text-white shadow-lg"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
             >
-              {showAll ? "Show Less" : "Show More"}
+              All Departments
             </button>
+            {departments.map((dept) => (
+              <button
+                key={dept}
+                onClick={() => setSelectedDepartment(dept)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  selectedDepartment === dept
+                    ? "bg-blue-600 text-white shadow-lg"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
+              >
+                {dept}
+              </button>
+            ))}
           </div>
+        </div>
+
+        {/* Loading Spinner */}
+        {loading ? (
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          </div>
+        ) : teachers.length === 0 ? (
+          <div className="text-center py-12">
+            <div className="text-6xl mb-4">👨‍🏫</div>
+            <h3 className="text-2xl font-bold text-gray-800 mb-2">No Teachers Available</h3>
+            <p className="text-gray-600">
+              {selectedDepartment
+                ? `No teachers found in ${selectedDepartment} department. Check back later for updates.`
+                : "No teachers found. Check back later for updates."}
+            </p>
+          </div>
+        ) : (
+          <>
+            {/* Teachers Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
+              {teachers.map((teacher, index) => (
+                <div
+                  key={teacher._id}
+                  className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-fadeInUp card-hover"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="p-4">
+                    {/* Teacher Image */}
+                    <div className="relative mb-4">
+                      {teacher.imageUrl ? (
+                        <img
+                          src={teacher.imageUrl}
+                          alt={teacher.name}
+                          className="w-20 h-20 rounded-full object-cover mx-auto border-4 border-blue-100"
+                        />
+                      ) : (
+                        <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-full flex items-center justify-center mx-auto border-4 border-blue-100">
+                          <span className="text-white text-2xl font-bold">
+                            {teacher.name?.charAt(0)}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Teacher Info */}
+                    <div className="text-center">
+                      <h3 className="text-lg font-bold text-gray-800 mb-1 line-clamp-2">
+                        {teacher.name}
+                      </h3>
+                      <p className="text-blue-600 font-medium text-sm mb-1">
+                        {teacher.designation}
+                      </p>
+                      <p className="text-gray-500 text-sm mb-2">{teacher.department}</p>
+
+                      <div className="space-y-1 text-xs text-gray-600">
+                        <p>
+                          <span className="font-medium">Qualification:</span>{" "}
+                          {teacher.qualification}
+                        </p>
+                        <p>
+                          <span className="font-medium">Experience:</span>{" "}
+                          {teacher.experience}
+                        </p>
+                      </div>
+
+                      {teacher.bio && (
+                        <p className="text-gray-600 text-xs mt-2 line-clamp-2">{teacher.bio}</p>
+                      )}
+
+                      {(teacher.email || teacher.phone) && (
+                        <div className="mt-3 pt-3 border-t border-gray-100">
+                          {teacher.email && (
+                            <p className="text-xs text-gray-500 mb-1">📧 {teacher.email}</p>
+                          )}
+                          {teacher.phone && (
+                            <p className="text-xs text-gray-500">📞 {teacher.phone}</p>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Show More/Less Button */}
+            {teachers.length >= 5 && (
+              <div className="text-center animate-fadeInUp">
+                <button
+                  onClick={() => setShowAll(!showAll)}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg btn-animate"
+                >
+                  {showAll ? "Show Less" : `See All Teachers (${teachers.length}+)`}
+                </button>
+              </div>
+            )}
+          </>
         )}
       </div>
-    </div>
+    </section>
   );
 }
+
+
+export default Teachers;

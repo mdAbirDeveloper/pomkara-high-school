@@ -79,42 +79,28 @@ const Navbar = () => {
             >
               Home
             </Link>
-            <div className="relative">
-              {/* Dropdown Toggle */}
-              <button
-                onClick={toggleDropdown}
-                className="bg-blue-500 text-white uppercase font-serif py-2 px-6 mr-2 rounded hover:bg-blue-600 transition-all"
-              >
-                More
-              </button>
 
-              {/* Dropdown Menu */}
-              {isDropdownOpen && (
-                <div className="absolute mt-2 bg-white shadow-lg rounded w-48">
-                  <Link
-                    onClick={toggleDropdown}
-                    href="/components/faculty"
-                    className="block px-4 py-2 text-white font-bold text-center mb-1 bg-green-400 transition-all"
-                  >
-                    Faculty
-                  </Link>
-                  <Link
-                    onClick={toggleDropdown}
-                    href="/components/teacher"
-                    className="block px-4 py-2 text-white font-bold text-center mb-1 bg-green-400 transition-all"
-                  >
-                    Teacher
-                  </Link>
-                  <Link
-                    onClick={toggleDropdown}
-                    href="/components/about"
-                    className="block px-4 py-2 text-white font-bold text-center mb-1 bg-green-400 transition-all"
-                  >
-                    About
-                  </Link>
-                </div>
-              )}
-            </div>
+            <Link
+              onClick={toggleDropdown}
+              href="/components/about"
+              className="bg-blue-500 text-white uppercase font-serif py-2 px-6 mr-2 rounded hover:bg-blue-600 transition-all"
+            >
+              About
+            </Link>
+            <Link
+              onClick={toggleDropdown}
+              href="/components/gallary"
+              className="bg-blue-500 text-white uppercase font-serif py-2 px-6 mr-2 rounded hover:bg-blue-600 transition-all"
+            >
+              Gellary
+            </Link>
+            <Link
+              onClick={toggleDropdown}
+              href="/components/teacher"
+              className="bg-blue-500 text-white uppercase font-serif py-2 px-6 mr-2 rounded hover:bg-blue-600 transition-all"
+            >
+              Teacher
+            </Link>
 
             <Link
               href="/components/notice"
@@ -136,18 +122,19 @@ const Navbar = () => {
             </Link>
             {studentFromDb ? (
               <>
-              <Link
-              href="/components/profile"
-              className="bg-green-500 text-white uppercase font-serif py-2 px-6 mr-2 rounded hover:bg-blue-600 transition-all"
-            >
-              profile
-            </Link>
-              <button
-                onClick={handleStudentLogout}
-                className="bg-red-500 mr-2 text-white uppercase font-serif py-2 px-6 rounded hover:bg-red-600 transition-all"
-              >
-                Logout Student
-              </button></>
+                <Link
+                  href="/components/profile"
+                  className="bg-green-500 text-white uppercase font-serif py-2 px-6 mr-2 rounded hover:bg-blue-600 transition-all"
+                >
+                  profile
+                </Link>
+                <button
+                  onClick={handleStudentLogout}
+                  className="bg-red-500 mr-2 text-white uppercase font-serif py-2 px-6 rounded hover:bg-red-600 transition-all"
+                >
+                  Logout Student
+                </button>
+              </>
             ) : (
               <Link
                 href="/components/studentLogin"
@@ -202,7 +189,7 @@ const Navbar = () => {
         </div>
 
         {menuOpen && (
-          <div className="md:hidden lg:hidden mt-4 px-4 bg-gray-400 absolute w-full">
+          <div className="md:hidden lg:hidden fixed top-16 left-0 w-full bg-white z-50 shadow-md px-4 py-3">
             <Link
               href="/"
               onClick={toggleMenu}
@@ -254,19 +241,22 @@ const Navbar = () => {
             </Link>
             {studentFromDb ? (
               <>
-              <Link
-              href="/components/profile"
-              onClick={toggleMenu}
-              className="block bg-green-500 text-white py-2 w-full mb-2 rounded hover:bg-blue-600 transition-all text-center"
-            >
-              profile
-            </Link>
-              <button
-                onClick={() => {handleStudentLogout(), toggleMenu()}}
-                className="bg-red-500 block  text-white py-2 w-full mb-2 rounded hover:bg-blue-600 transition-all text-center"
-              >
-                Logout Student
-              </button></>
+                <Link
+                  href="/components/profile"
+                  onClick={toggleMenu}
+                  className="block bg-green-500 text-white py-2 w-full mb-2 rounded hover:bg-blue-600 transition-all text-center"
+                >
+                  profile
+                </Link>
+                <button
+                  onClick={() => {
+                    handleStudentLogout(), toggleMenu();
+                  }}
+                  className="bg-red-500 block  text-white py-2 w-full mb-2 rounded hover:bg-blue-600 transition-all text-center"
+                >
+                  Logout Student
+                </button>
+              </>
             ) : (
               <Link
                 onClick={toggleMenu}
