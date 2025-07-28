@@ -5,6 +5,7 @@ import Teacher from "./components/teacher";
 import Contact from "./components/contact";
 import Head from "next/head";
 import Gallery from "./components/gallary";
+import Notices from "./components/notice";
 
 export default function Home() {
 
@@ -26,6 +27,7 @@ export default function Home() {
       </Head>
       <div>
         <TopSection />
+        <Notices />
         <Teacher />
         <Gallery />
         <Contact />
