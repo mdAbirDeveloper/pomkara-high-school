@@ -72,88 +72,59 @@ const Navbar = () => {
               title="This is AV Technology logo"
             />
           </div>
-          <div className="hidden md:flex text-sm">
-            <Link
-              href="/"
-              className="bg-blue-500 text-white uppercase font-serif py-2 px-6 mr-2 rounded hover:bg-blue-600 transition-all"
-            >
-              Home
-            </Link>
+          <div className="hidden md:flex flex-wrap items-center gap-2 text-sm">
+            {[
+              { label: "Home", href: "/" },
+              { label: "About", href: "/components/about" },
+              { label: "Gallery", href: "/components/gallary" },
+              { label: "Teacher", href: "/components/teacher" },
+              { label: "Notice", href: "/components/notice" },
+              { label: "Result", href: "/components/result" },
+              { label: "Contact", href: "/components/contact" },
+            ].map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="uppercase font-serif py-2 px-5 rounded-md bg-blue-500 text-white transition-all duration-300 hover:bg-blue-600 hover:scale-105 shadow-md hover:shadow-lg"
+              >
+                {item.label}
+              </Link>
+            ))}
 
-            <Link
-              onClick={toggleDropdown}
-              href="/components/about"
-              className="bg-blue-500 text-white uppercase font-serif py-2 px-6 mr-2 rounded hover:bg-blue-600 transition-all"
-            >
-              About
-            </Link>
-            <Link
-              onClick={toggleDropdown}
-              href="/components/gallary"
-              className="bg-blue-500 text-white uppercase font-serif py-2 px-6 mr-2 rounded hover:bg-blue-600 transition-all"
-            >
-              Gellary
-            </Link>
-            <Link
-              onClick={toggleDropdown}
-              href="/components/teacher"
-              className="bg-blue-500 text-white uppercase font-serif py-2 px-6 mr-2 rounded hover:bg-blue-600 transition-all"
-            >
-              Teacher
-            </Link>
-
-            <Link
-              href="/components/notice"
-              className="bg-blue-500 text-white uppercase font-serif py-2 px-6 mr-2 rounded hover:bg-blue-600 transition-all"
-            >
-              Notice
-            </Link>
-            <Link
-              href="/components/result"
-              className="bg-blue-500 text-white uppercase font-serif py-2 px-6 mr-2 rounded hover:bg-blue-600 transition-all"
-            >
-              Result
-            </Link>
-            <Link
-              href="/components/contact"
-              className="bg-blue-500 text-white uppercase font-serif py-2 px-6 mr-2 rounded hover:bg-blue-600 transition-all"
-            >
-              Contact
-            </Link>
             {studentFromDb ? (
               <>
                 <Link
                   href="/components/profile"
-                  className="bg-green-500 text-white uppercase font-serif py-2 px-6 mr-2 rounded hover:bg-blue-600 transition-all"
+                  className="uppercase font-serif py-2 px-5 rounded-md bg-green-500 text-white transition-all duration-300 hover:bg-green-600 hover:scale-105 shadow-md hover:shadow-lg"
                 >
-                  profile
+                  Profile
                 </Link>
                 <button
                   onClick={handleStudentLogout}
-                  className="bg-red-500 mr-2 text-white uppercase font-serif py-2 px-6 rounded hover:bg-red-600 transition-all"
+                  className="uppercase font-serif py-2 px-5 rounded-md bg-red-500 text-white transition-all duration-300 hover:bg-red-600 hover:scale-105 shadow-md hover:shadow-lg"
                 >
-                  Logout Student
+                  Logout
                 </button>
               </>
             ) : (
               <Link
                 href="/components/studentLogin"
-                className="bg-green-500 text-white uppercase font-serif py-2 px-6 mr-2 rounded hover:bg-blue-600 transition-all"
+                className="uppercase font-serif py-2 px-5 rounded-md bg-green-500 text-white transition-all duration-300 hover:bg-green-600 hover:scale-105 shadow-md hover:shadow-lg"
               >
-                Student_Login
+                Student Login
               </Link>
             )}
-            {userFromDb?.isApprove == true && (
-              <>
-                <Link
-                  href="/components/Dashboard"
-                  className="bg-green-500 text-white uppercase font-serif py-2 px-6 mr-2 rounded hover:bg-blue-600 transition-all"
-                >
-                  Dashboard
-                </Link>
-              </>
+
+            {userFromDb?.isApprove && (
+              <Link
+                href="/components/Dashboard"
+                className="uppercase font-serif py-2 px-5 rounded-md bg-green-600 text-white transition-all duration-300 hover:bg-green-700 hover:scale-105 shadow-md hover:shadow-lg"
+              >
+                Dashboard
+              </Link>
             )}
           </div>
+
           <div className="hidden md:block mr-4">
             {user?.uid ? (
               <>
