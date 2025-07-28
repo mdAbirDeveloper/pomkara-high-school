@@ -10,9 +10,11 @@ const Notice = () => {
 
   useEffect(() => {
     const fetchNotices = async () => {
-      setLoading(true)
+      setLoading(true);
       try {
-        const response = await fetch("https://pomkara-high-school-server.vercel.app/getNotices");
+        const response = await fetch(
+          "https://pomkara-high-school-server.vercel.app/getNotices"
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch notices");
         }
@@ -76,7 +78,10 @@ const Notice = () => {
           property="og:image"
           content="[URL to an image related to notices or the school]"
         />
-        <meta property="og:url" content="https://pomkara-high-school.netlify.app/components/notices" />
+        <meta
+          property="og:url"
+          content="https://pomkara-high-school.netlify.app/components/notices"
+        />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
@@ -92,33 +97,43 @@ const Notice = () => {
         />
       </Head>
       <div>
-        <div className="">
+        <div className="flex flex-col gap-6 items-center px-4">
           {notices?.map((notice) => (
-            <>
-              <div className="max-w-[800px] mx-auto shadow-xl bg-white text-center mt-5">
-                <h2 className="md:text-4xl text-xl font-bold font-serif text-green-400 py-3">
-                  {notice.heading}
-                </h2>
+            <div
+              key={notice._id}
+              className="max-w-[800px] w-full bg-white rounded-lg shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-[1.01] overflow-hidden"
+            >
+              <h2 className="text-2xl md:text-4xl font-bold text-green-500 font-serif text-center py-4 px-2">
+                {notice.heading}
+              </h2>
+
+              {notice.image && (
                 <img
                   src={notice.image}
-                  className="mx-auto w-full px-10 rounded"
+                  alt="Notice"
+                  className="w-full h-auto object-cover px-4 rounded"
                 />
-                <p className="text-lg mt-3 p-4 font-serif">
-                  {notice.paragraph}
+              )}
+
+              <p className="text-lg text-gray-700 p-4 font-serif text-justify">
+                {notice.paragraph}
+              </p>
+
+              <div className="bg-gray-100 text-gray-700 py-3 px-4 text-sm font-serif flex flex-col sm:flex-row justify-between items-center">
+                <p>
+                  <span className="font-semibold">Uploaded By:</span>{" "}
+                  {notice.uploader?.name}
                 </p>
-                <div className="shadow-xl pb-2 bg-base-300 font-serif">
-                  <p>Upload By : {notice.uploader.name}</p>
-                  <p>
-                    Update Date:{" "}
-                    {new Date(notice.createdAt).toLocaleDateString("en-US", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </p>
-                </div>
+                <p>
+                  <span className="font-semibold">Date:</span>{" "}
+                  {new Date(notice.createdAt).toLocaleDateString("en-US", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </p>
               </div>
-            </>
+            </div>
           ))}
         </div>
       </div>
